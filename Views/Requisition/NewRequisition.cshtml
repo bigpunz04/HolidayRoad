@@ -1,0 +1,132 @@
+﻿@model HRV7.Models.Requisition
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+
+@{
+    ViewData["Title"] = "Create a New Time Off Requisition";
+    
+
+    String status = "";
+
+    if(ViewBag.EmploymentType == "F")
+    {
+        status = "Full Time";
+    }
+    else
+    {
+        status = "Part Time";
+    }
+
+}
+
+<h1>@ViewData["Title"]</h1>
+<br />
+
+<!--PERSONAL INFORMATION-->
+<div class="row">
+    <div class="col-sm-12">
+        <h4>Employee Information</h4>
+    </div>
+</div>
+
+    <div class="row">
+        <div class="col-sm-3">
+            <label class="control-label">Name</label>
+            <input class="form-control" value="@ViewBag.Name" readonly="readonly" />
+        </div>
+        <div class="col-sm-3">
+            <label  class="control-label">Employment Status</label>
+            <input  class="form-control" value="@status" readonly="readonly" />
+        </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h4>Time Off Details</h4>
+        </div>
+    </div>
+    <br />
+
+    <form asp-action="NewRequisition" method="post">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label asp-for="@Model.EmployeeFK" class="control-label">Employee Id</label>
+                    <input asp-for="@Model.EmployeeFK" class="form-control" value="@ViewBag.EmployeeId" readonly="readonly" />
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label asp-for="@Model.DateRequested" class="control-label">Date Requested</label>
+                    <input asp-for="@Model.DateRequested" class="form-control" value="@ViewBag.Now" readonly="readonly" />
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label asp-for="@Model.Status" class="control-label">Requisition Status</label>
+                    <input asp-for="@Model.Status" class="form-control" value="In Review" readonly="readonly" />
+                </div>
+            </div>
+
+        </div>
+        <br />
+
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label asp-for="@Model.TimeOffType" class="control-label">Select a Type</label>
+                    <select asp-for="@Model.TimeOffType" class="form-control">
+                        @if (status.Equals("Full Time"))
+                        {
+                            <option value="">Choose a Type</option>
+                            <option value="Vacation">Vacation</option>
+                            <option value="Sick">Sick</option>
+                            <option value="Bereavement">Bereavement</option>
+                            <option value="Unpaid">Unpaid Time Off</option>
+                        }
+                        else
+                        {
+                            <option value="">Choose a Type</option>
+                            <option value="Sick">Sick</option>
+                            <option value="Bereavement">Bereavement</option>
+                            <option value="Unpaid">Unpaid Time Off</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label asp-for="@Model.StartDate" class="control-label">Start Date</label>
+                    <input asp-for="@Model.StartDate" placeholder="MM-DD-YYY" class="form-control" />
+                    <span asp-validation-for="@Model.StartDate" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label asp-for="@Model.EndDate" class="control-label">End Date</label>
+                    <input asp-for="@Model.EndDate" placeholder="MM-DD-YYYY" class="form-control" />
+                    <span asp-validation-for="@Model.EndDate" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label asp-for="@Model.EmpNote" class="control-label">Note (optional)</label>
+                    <textarea asp-for="@Model.EmpNote" class="form-control" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <input type="submit" value="Create Requisition" class="btn bg-dark" style="color:white;" />
+                </div>
+                <div class="form-group">
+                    <a asp-action="Dashboard" asp-controller="Dashboard" class="btn bg-dark" style="color:white;">Back</a>
+                </div>
+            </div>
+        </div>
+    </form>

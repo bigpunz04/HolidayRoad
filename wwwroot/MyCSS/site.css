@@ -1,0 +1,13 @@
+﻿body {
+}
+
+.bgColorGrey{
+    background-color: gainsboro;
+}
+
+h6{
+    font-size:14px;
+}
+.lineHeightZero{
+    line-height:48px;
+}

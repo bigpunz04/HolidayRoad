@@ -1,0 +1,60 @@
+﻿@model HRV7.Models.Requisition
+@using HRV7.Models
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+
+@{
+    ViewData["Title"] = "Delete Requisition";
+
+    double differenceResult = (Model.StartDate - Model.EndDate).Ticks;
+    TimeSpan span = Model.EndDate.Subtract(Model.StartDate);
+    int numDays = span.Days;
+
+}
+
+<h1>@ViewData["Title"]</h1>
+<br />
+
+
+
+    <div asp-validation-summary="All"></div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h4>Please confirm that you would like to delete @ViewBag.FullName's time off request?</h4>
+        </div>
+    </div>
+    
+    
+
+    <form asp-action="DeleteRequisitionConfirmed" method="post">
+        <div class="row" style="display:none;">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <input asp-for="RequisitionId" class="form-control" value="@Model.RequisitionId" readonly="readonly" name="id"/>
+                </div>
+            </div>
+        </div>
+        <br />
+
+
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <input type="submit" value="Delete Requisition" class="btn btn-primary" />
+                    
+                </div>
+            </div>
+        </div>
+    </form>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <a asp-action="Dashboard" asp-controller="Dashboard" class="btn btn-primary">Back</a>
+                </div>
+            </div>
+        </div>
+
+
+    

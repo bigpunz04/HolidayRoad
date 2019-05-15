@@ -1,0 +1,103 @@
+﻿@model HRV7.Models.ViewModelDashboard
+@using HRV7.Models
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+
+@{
+    ViewData["Title"] = "Manager Dashboard";
+
+}
+
+<h1>@ViewData["Title"].</h1>
+<br />
+<div class="row">
+    <div class="col-sm-3">
+        <h4>Employee Listing </h4>
+    </div>
+    <div class="col-sm-2">
+        <a asp-action="NewEmployee" asp-controller="Employee" class="btn bg-dark" style="color:white;">+ New Employee</a>
+    </div>
+</div>
+<br />
+
+<!--Employees-->
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Employee Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Department</th>
+                    <th scope="col">Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var emp in Model.EmployeesModel)
+                {
+                    <tr>
+                        <td>@emp.EmployeeId</td>
+                        <td>@emp.FirstName @emp.LastName</td>
+                        <td>@emp.Title</td>
+                        <td>@emp.Department</td>
+                        <td>
+                            <a asp-action="ViewDetails" asp-route-id="@emp.EmployeeId">View </a> |
+                            <a asp-action="EditEmployeeDetails" asp-route-id="@emp.EmployeeId">Edit </a> |
+                            <a asp-action="DeleteEmployee" asp-route-id="@emp.EmployeeId">Delete</a> |
+                            <a asp-action="NewRequisition" asp-controller="Requisition" asp-route-id="@emp.EmployeeId">New Requisition</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-sm-3">
+        <h4>Requisition Listing </h4>
+    </div>
+</div>
+<br />
+<!--Requisitions-->
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Requisition Id</th>
+                    <th scope="col">Employee Name</th>
+                    <th scope="col">Date Requested</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var req in Model.RequisitionsModel)
+                {
+                    Employee emp = new Employee();
+                    foreach (var employee in Model.EmployeesModel)
+                    {
+                        if (employee.EmployeeId == req.EmployeeFK)
+                        {
+                            emp = employee;
+                        }
+                    }
+                    <tr>
+                        <td>@req.RequisitionId</td>
+                        <td>@emp.FirstName @emp.LastName</td>
+                        <td>@req.DateRequested</td>
+                        <td>@req.Status</td>
+                        <td>
+                            <a asp-action="ViewRequisitionDetails" asp-route-id="@req.RequisitionId">View </a> |
+                            <a asp-action="DeleteRequisition" asp-route-id="@req.RequisitionId">Delete</a> |
+                            <a asp-action="ApproveDenyRequisition" asp-controller="Requisition" asp-route-id="@req.RequisitionId">Approve/Deny Request</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,138 @@
+﻿@model HRV7.Models.Requisition
+@using HRV7.Models
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+
+@{
+    ViewData["Title"] = "View Requisition Details";
+
+    double differenceResult = (Model.StartDate - Model.EndDate).Ticks;
+    TimeSpan span = Model.EndDate.Subtract(Model.StartDate);
+    int numDays = span.Days;
+
+}
+
+<h1>@ViewData["Title"]</h1>
+<br />
+
+
+
+    <div asp-validation-summary="All"></div>
+
+    <!--PERSONAL INFORMATION-->
+    <div class="row">
+        <div class="col-sm-12">
+            <h4>Employee Information</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label class="control-label">Name</label>
+                <input class="form-control" value="@ViewBag.First @ViewBag.Last" readonly="readonly" />
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label class="control-label">Employment Type</label>
+                <input class="form-control" value="@ViewBag.EmploymentType" readonly="readonly" />
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label class="control-label">Remaining Vacation Days</label>
+                <input class="form-control" value="@ViewBag.VacationDays" readonly="readonly" />
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label class="control-label">Remaining Sick Days</label>
+                <input class="form-control" value="@ViewBag.SickDays" readonly="readonly" />
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label class="control-label">Remaining Bereavement Days</label>
+                <input class="form-control" value="@ViewBag.BereavementDays" readonly="readonly" />
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-sm-12">
+            <h4>Requisition Information</h4>
+        </div>
+    </div>
+    <form asp-action="ApproveDenyRequisitionConfirmed" method="post">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label asp-for="RequisitionId"="control-label">Requisition Id</label>
+                    <input asp-for="RequisitionId" class="form-control" value="@Model.RequisitionId" readonly="readonly" />
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label asp-for="DateRequested" class="control-label">Date Requested</label>
+                    <input asp-for="DateRequested" class="form-control" value="@Model.DateRequested" readonly="readonly" />
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label asp-for="TimeOffType" class="control-label">Time Off Type Requested</label>
+                    <input asp-for="TimeOffType" class="form-control" value="@Model.TimeOffType" readonly="readonly" />
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label asp-for="Status" class="control-label">Status</label>
+                    <input asp-for="Status" class="form-control" value="@Model.Status" readonly="readonly" />
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label asp-for="StartDate" class="control-label">Requested Start Date</label>
+                    <input asp-for="StartDate" class="form-control" value="@Model.StartDate" readonly="readonly" />
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label asp-for="EndDate" class="control-label">Requested End Date</label>
+                    <input asp-for="EndDate" class="form-control" value="@Model.EndDate" readonly="readonly" />
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label asp-for="TotalDays" class="control-label">Total Days Off Requested</label>
+                    <input asp-for="TotalDays" class="form-control" value="@numDays" readonly="readonly" />
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label asp-for="EmpNote" class="control-label">Employee Note</label>
+                    <textarea class="form-control" asp-for="EmpNote" rows="3" value="@Model.EmpNote" readonly="readonly"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <a asp-action="Dashboard" asp-controller="Dashboard" class="btn btn-primary">Back</a>
+                </div>
+            </div>
+        </div>
+
+
+    </form>

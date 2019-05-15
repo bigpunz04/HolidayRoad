@@ -1,0 +1,151 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+
+<div class="row">
+    <div class="col-md-8">
+        <h3>Welcome to HolidayRoad!</h3>
+        <br />
+        <p>
+            After spending the first eight years of my career working at small-to-medium sized companies, I have noticed how the process of requesting time off
+            is incredibly slow and archaic.  Even in this day and age, I have experienced processes that involved paper time off forms which required the need for
+            written manager approvals along with a paper ledger that tracks time off taken in a given year.  Obviously, there are improvements that can be made and
+            that is exactly why I am developing my Time Off Web Applicaiton, HolidayRoad!
+        </p>
+        <p>
+            HolidayRoad will be an application that will allow a company to simplify the process of requesting time off, tracking time off, and assist in managerial functions such as
+            approving/denying time off requests.
+        </p>
+        <br />
+        <a asp-action="Dashboard" asp-controller="Dashboard" class="btn btn-lg bg-dark" style="color:white;">Let's Get Started</a>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-3">
+        <br />
+        <h5 style="text-align:center">My Information</h5>
+        <img src="~/Images/selfie_bw.png" class="img-fluid" />
+        <div style="width:70%; margin: 0 auto;">
+            <br />
+            <h6 >Rhein "Ryne" Punzalan</h6>
+            <h6 >(847)769-5285</h6>
+            <h6 >rpunzalan04@gmail.com</h6>
+            <br />
+        </div>
+        
+    </div>
+</div>
+<br />
+<br />
+<br />
+<div class="row">
+    <div class="col-md-4">
+        <h4 style="text-align:center">Upcoming Features</h4>
+        <hr />
+        <br />
+        <div>
+            <ul class="list-group">
+                <li class="list-group-item bgColorGrey">Identity Core Features
+                    <ul>
+                        <li>
+                            Login Functionality
+                        </li>
+                        <li>
+                            User Authentication
+                        </li>
+                    </ul>
+                </li>
+                <li class="list-group-item bgColorGrey">Application Logic
+                    <ul>
+                        <li>
+                            Dashboard based on employee title
+                        </li>
+                        <li>
+                            CRUD Operations on both Employees and Time Off Requisitions
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <h4 style="text-align:center">Latest Updates</h4>
+        <hr />
+        <br />
+        <div>
+            <ul class="list-group">
+                <li class="list-group-item bgColorGrey">
+                    Manager Dashboard
+                    <ul>
+                        <li>
+                            New Employee Functionality
+                        </li>
+                        <li>
+                            Create Time Off Request
+                        </li>
+                        <li>
+                            Approve/Deny Time Off Request
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <h4 style="text-align:center">Prior Updates</h4>
+        <hr />
+        <br />
+        <div>
+            <ul class="list-group">
+                <li class="list-group-item bgColorGrey">
+                    Entity Framework Core
+                    <ul>
+                        <li>
+                            Created Employee Database
+                        </li>
+                        <li>
+                            Created Time Off Requests Database
+                        </li>
+                    </ul>
+                </li>
+                <li class="list-group-item bgColorGrey">
+                    Models, Views, Controllers
+                    <ul>
+                        <li>Dashboard View, New Employee, New Requisition</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+<br />
+<h3>Technical Specifications</h3>
+<br />
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">Platform</th>
+            <th scope="col">Version</th>
+        </tr>
+    </thead>
+    <tr>
+        <td>ASP.NET Core MVC Pattern</td>
+        <td>2.2</td>
+    </tr>
+    <tr>
+        <td>Entity Framework Core</td>
+        <td>2.2.4</td>
+    </tr>
+    <tr>
+        <td>Bootstrap</td>
+        <td>4.3.1</td>
+    </tr>
+    <tr>
+        <td>HTML</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>CSS</td>
+        <td>3</td>
+    </tr>
+</table>
